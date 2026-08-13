@@ -24,7 +24,13 @@ function(set_target_properties_plugin target)
 
   install(TARGETS ${target} RUNTIME DESTINATION "${target}/bin/64bit" LIBRARY DESTINATION "${target}/bin/64bit")
 
-  install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/README.md" "${CMAKE_CURRENT_SOURCE_DIR}/СОЗДАНИЕ-ПРЕСЕТОВ.md" "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE" DESTINATION "${target}")
+  install(
+    FILES
+      "${CMAKE_CURRENT_SOURCE_DIR}/README.md"
+      "${CMAKE_CURRENT_SOURCE_DIR}/СОЗДАНИЕ-ПРЕСЕТОВ.md"
+      "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE"
+    DESTINATION "${target}"
+  )
 
   install(
     FILES "$<TARGET_PDB_FILE:${target}>"
