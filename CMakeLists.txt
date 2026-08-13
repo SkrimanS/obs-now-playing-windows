@@ -13,6 +13,8 @@ include(helpers)
 
 add_library(${CMAKE_PROJECT_NAME} MODULE)
 
+target_compile_features(${CMAKE_PROJECT_NAME} PRIVATE cxx_std_20)
+
 find_package(libobs REQUIRED)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE OBS::libobs)
 
@@ -34,6 +36,11 @@ if(ENABLE_QT)
   )
 endif()
 
-target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-main.c)
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-main.cpp)
+
+if(WIN32)
+  target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE windowsapp gdi32)
+  target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE NOMINMAX WIN32_LEAN_AND_MEAN)
+endif()
 
 set_target_properties_plugin(${CMAKE_PROJECT_NAME} PROPERTIES OUTPUT_NAME ${_name})

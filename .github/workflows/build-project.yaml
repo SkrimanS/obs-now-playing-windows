@@ -73,6 +73,8 @@ jobs:
 
   macos-build:
     name: Build for macOS 🍏
+    # Disabled until the plugin has a non-Windows implementation.
+    if: ${{ false }}
     runs-on: macos-15
     needs: check-event
     defaults:
@@ -177,6 +179,8 @@ jobs:
 
   ubuntu-build:
     name: Build for Ubuntu 🐧
+    # Disabled until the plugin has a non-Windows implementation.
+    if: ${{ false }}
     strategy:
       matrix:
         os: [ubuntu-24.04]
@@ -289,6 +293,11 @@ jobs:
           target: x64
           config: ${{ needs.check-event.outputs.config }}
           package: ${{ fromJSON(needs.check-event.outputs.package) }}
+
+      - name: Validate Plugin Archive ✅
+        run: >-
+          .github/scripts/Test-PluginBundle.ps1
+          -BundlePath "release/${{ steps.setup.outputs.pluginName }}-${{ steps.setup.outputs.pluginVersion }}-windows-x64.zip"
 
       - name: Upload Artifacts 📡
         uses: actions/upload-artifact@v4

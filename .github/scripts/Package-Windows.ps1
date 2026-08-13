@@ -49,6 +49,11 @@ function Package {
 
     $OutputName = "${ProductName}-${ProductVersion}-windows-${Target}"
 
+    # Debug symbols are useful for local diagnostics, but the public package
+    # contains only files required by OBS and the user documentation.
+    Get-ChildItem -Path "${ProjectRoot}/release/${Configuration}" -Filter '*.pdb' -Recurse -ErrorAction SilentlyContinue |
+        Remove-Item -Force
+
     $RemoveArgs = @{
         ErrorAction = 'SilentlyContinue'
         Path = @(

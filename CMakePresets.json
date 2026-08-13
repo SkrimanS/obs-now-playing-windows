@@ -70,6 +70,26 @@
       }
     },
     {
+      "name": "windows-x64-vs2026",
+      "displayName": "Windows x64 (VS 2026 Developer Shell)",
+      "description": "Local NMake build from a Visual Studio 2026 Developer PowerShell",
+      "inherits": ["template"],
+      "binaryDir": "${sourceDir}/build_nmake_vs2026",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "generator": "NMake Makefiles",
+      "warnings": {"dev": true, "deprecated": true},
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "CMAKE_VS_PLATFORM_NAME": "x64",
+        "CMAKE_SYSTEM_VERSION": "10.0.22621.0",
+        "CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION": "10.0.22621.0"
+      }
+    },
+    {
       "name": "ubuntu-x86_64",
       "displayName": "Ubuntu x86_64",
       "description": "Build for Ubuntu x86_64",
@@ -127,6 +147,12 @@
       "displayName": "Windows x64 CI",
       "description": "Windows CI build for x64 (RelWithDebInfo configuration)",
       "configuration": "RelWithDebInfo"
+    },
+    {
+      "name": "windows-x64-vs2026",
+      "configurePreset": "windows-x64-vs2026",
+      "displayName": "Windows x64 (VS 2026 Developer Shell)",
+      "description": "Local NMake build from a Visual Studio 2026 Developer PowerShell"
     },
     {
       "name": "ubuntu-x86_64",
