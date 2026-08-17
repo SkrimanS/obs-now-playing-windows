@@ -1,0 +1,42 @@
+name: Сообщить об ошибке
+description: Ошибка или неожиданное поведение плагина
+title: "[Ошибка]: "
+labels: [bug]
+body:
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Версия плагина
+      placeholder: 0.6.0
+    validations:
+      required: true
+  - type: input
+    id: obs-version
+    attributes:
+      label: Версия OBS Studio
+    validations:
+      required: true
+  - type: input
+    id: windows-version
+    attributes:
+      label: Версия Windows
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Как воспроизвести ошибку
+      description: Опишите действия по порядку.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Ожидаемое поведение
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Журнал OBS
+      description: Справка → Файлы журналов → Загрузить последний файл журнала.
